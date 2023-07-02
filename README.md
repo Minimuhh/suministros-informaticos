@@ -10,7 +10,7 @@ proveedores permitiéndole ver en tiempo real datos y estadísticas de sus venta
 
 ## Stack tecnológico y alternativas evaluadas
 
-Stack tecnologico:^
+Stack tecnologico:
 - Frontend:
 - HTML
 - CSS(Bootstrap)
