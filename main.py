@@ -86,6 +86,7 @@ def login():
         password = request.form.get("passwordControl")
         
         usuario = connection.session.query(Usuario).filter_by(email=email, password=password).first()
+        print("usuario", usuario)
         token = jwt.JWT.encode({
             "id": str(usuario.id), 
             "email": usuario.email,
