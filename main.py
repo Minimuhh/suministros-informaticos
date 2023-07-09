@@ -101,7 +101,7 @@ def login():
 @token_required
 def dashboard():
 
-    return "Hey, estas logoado"
+    return "Hey, estas logeºzado"
 
 
 if __name__ == '__main__':
