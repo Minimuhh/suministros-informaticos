@@ -6,7 +6,7 @@ from flask import (
     jsonify,
     url_for
 )
-import jwt
+import jwt # https://pyjwt.readthedocs.io/en/stable/
 from functools import wraps
 from datetime import datetime, timedelta
 
@@ -84,10 +84,9 @@ def login():
     elif(request.method == "POST"):
         email = request.form.get("emailControl")
         password = request.form.get("passwordControl")
-        
-        # usuario = connection.session.query(Usuario).filter_by(email=email).first()
         usuario = connection.session.query(Usuario).filter_by(email=email).first()
-        print("usuario", usuario)
+        print(usuario, "usuario")
+
         token = jwt.JWT.encode({
             "id": str(usuario.id), 
             "email": usuario.email,
