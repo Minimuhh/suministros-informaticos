@@ -87,7 +87,7 @@ def login():
         usuario = connection.session.query(Usuario).filter_by(email=email).first()
         print(usuario, "usuario")
 
-        token = jwt.JWT.encode({
+        token = jwt.encode({
             "id": str(usuario.id), 
             "email": usuario.email,
             "exp": datetime.utcnow() + timedelta(minutes=30)
