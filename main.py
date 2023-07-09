@@ -3,6 +3,7 @@ from flask import (
     render_template, 
     request, 
     redirect, 
+    make_response,
     jsonify,
     url_for
 )
@@ -29,8 +30,9 @@ def token_required(f):
   
         try:
             # decoding the payload to fetch the stored details
-            data = jwt.decode(token, app.config['SECRET_KEY'])
-            current_user = Usuario.query.filter_by(nombre=data['nombre']).first()
+            data = jwt.decode(token, app.config['SECRET_KEY'], algorithms='HS256')
+            print("data", data)
+            current_user = Usuario.query.filter_by(id=data['id']).first()
         except:
             return jsonify({
                 'message' : 'Token is invalid !!'
@@ -84,17 +86,17 @@ def login():
     elif(request.method == "POST"):
         email = request.form.get("emailControl")
         password = request.form.get("passwordControl")
-        usuario = connection.session.query(Usuario).filter_by(email=email).first()
-        print(usuario, "usuario")
+        usuario = connection.session.query(Usuario).filter_by(email=email, password=password).first()
+        print(usuario, usuario.id , "usuario")
 
         token = jwt.encode({
             "id": str(usuario.id), 
             "email": usuario.email,
             "exp": datetime.utcnow() + timedelta(minutes=30)
         }, app.config["SECRET_KEY"])
+
+        return make_response(jsonify({"token": token}), 201)
         
-        return redirect("/dashboard", code=200, Response=token)
-    
 
 @app.route('/dashboard', methods=["GET", "POST"])
 @token_required
