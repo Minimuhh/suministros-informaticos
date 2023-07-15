@@ -5,8 +5,10 @@ from flask import (
     redirect, 
     make_response,
     jsonify,
-    url_for
+    url_for,
+    session
 )
+
 import jwt # https://pyjwt.readthedocs.io/en/stable/
 from functools import wraps
 from datetime import datetime, timedelta
@@ -22,17 +24,17 @@ def token_required(f):
     def decorated(*args, **kwargs):
         token = None
         # jwt is passed in the request header
-        if 'x-access-token' in request.headers:
-            token = request.headers['x-access-token']
+        if('jwt_token' in session):
+            token = session.get('jwt_token')
         # return 401 if token is not passed
         if not token:
-            return jsonify({'message' : 'Token is missing !!'}), 401
-  
+            return redirect(url_for('login'))
+            #return jsonify({'message' : 'Token is missing !!'}), 401
+
         try:
             # decoding the payload to fetch the stored details
             data = jwt.decode(token, app.config['SECRET_KEY'], algorithms='HS256')
-            print("data", data)
-            current_user = Usuario.query.filter_by(id=data['id']).first()
+            current_user = connection.session.query(Usuario).filter_by(id=data['id']).first()
         except:
             return jsonify({
                 'message' : 'Token is invalid !!'
@@ -41,7 +43,6 @@ def token_required(f):
         return  f(current_user, *args, **kwargs)
   
     return decorated
-
 
 
 @app.route('/', methods=['GET'])
@@ -87,7 +88,7 @@ def login():
         email = request.form.get("emailControl")
         password = request.form.get("passwordControl")
         usuario = connection.session.query(Usuario).filter_by(email=email, password=password).first()
-        print(usuario, usuario.id , "usuario")
+        print(usuario, usuario , "usuario")
 
         token = jwt.encode({
             "id": str(usuario.id), 
@@ -95,18 +96,27 @@ def login():
             "exp": datetime.utcnow() + timedelta(minutes=30)
         }, app.config["SECRET_KEY"])
 
-        return make_response(jsonify({"token": token}), 201)
+        session['jwt_token'] = token
+        
+        return redirect(url_for('dashboard'))
+        # return make_response(jsonify({"token": token}), 201)
         
 
 @app.route('/dashboard', methods=["GET", "POST"])
 @token_required
-def dashboard():
+def dashboard(user):
+    if(request.method == "GET"):
+        return render_template("dashboard.html", context={"user": user})
+    elif(request.method == 'POST'):
+        pass
 
-    return "Hey, estas logeºzado"
+@app.route("/logout")
+def logout():
+    session.pop('jwt_token')
+    return redirect(url_for('login'))
 
 
 if __name__ == '__main__':
-
     # connection.Base.metadata.create_all(connection.engine)
     app.run(debug=True)
 
