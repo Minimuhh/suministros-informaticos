@@ -3,23 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Suministros Informáticos Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f1f1f1;
+        }
+        header {
+            background-color: #f44336;
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+        }
+        .welcome-message {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .logout-button {
+            background-color: #f44336;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .logout-button:hover {
+            background-color: #d32f2f;
+        }
+    </style>
 </head>
 <body>
-    <div>
-        <h1>Dashboard</h1>
+    <header>
+        <h1>Suministros Informáticos Dashboard</h1>
+    </header>
+    <div class="container">
+        <div class="welcome-message">
+            ¡Hola, estás logueado!
+        </div>
+        <div style="text-align: center;">
+            <img src="logo.jpg" alt="Suministros informaticos kev" width="120">
+        </div>
+        <div>
+            <h2>Productos Disponibles</h2>
+            <ul>
+                <li>Producto 1</li>
+                <li>Producto 2</li>
+                <li>Producto 3</li>
+            </ul>
+        </div>
+        <div style="text-align: center;">
+            <button class="logout-button" onclick="logout()">Logout</button>
+        </div>
     </div>
-    <div>
-        hola estas logeado
-    </div>
-    <div>
-        <button onclick="logout()">
-            Logout
-        </button>
-    </div>
+
     <script>
-        function logout(){
-            window.location.pathname = '/logout'
+        function logout() {
+            // Cambia la URL de redirección si es necesario
+            window.location.pathname = '/logout';
         }
     </script>
 </body>
