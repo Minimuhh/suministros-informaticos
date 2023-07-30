@@ -14,7 +14,10 @@ from functools import wraps
 from datetime import datetime, timedelta
 
 import connection
-from models import Usuario
+from models import (
+    Usuario,
+    Producto
+)
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "1756524c-bdb2-4273-bbde-cd4d411763ca"
@@ -47,7 +50,7 @@ def token_required(f):
 
 @app.route('/', methods=['GET'])
 def home(): 
-    return render_template('base.html', context={})
+    return render_template('home.html', context={})
 
 
 @app.route('/registrar', methods=['POST', 'GET'])
@@ -88,7 +91,6 @@ def login():
         email = request.form.get("emailControl")
         password = request.form.get("passwordControl")
         usuario = connection.session.query(Usuario).filter_by(email=email, password=password).first()
-        print(usuario, usuario , "usuario")
 
         token = jwt.encode({
             "id": str(usuario.id), 
@@ -106,7 +108,12 @@ def login():
 @token_required
 def dashboard(user):
     if(request.method == "GET"):
-        return render_template("dashboard.html", context={"user": user})
+        productos = connection.session.query(Producto).all()
+        context = {
+            "user": user, 
+            "productos": productos
+        }
+        return render_template("dashboard.html", context=context)
     elif(request.method == 'POST'):
         pass
 
@@ -117,6 +124,6 @@ def logout():
 
 
 if __name__ == '__main__':
-    # connection.Base.metadata.create_all(connection.engine)
+    connection.Base.metadata.create_all(connection.engine)
     app.run(debug=True)
 
