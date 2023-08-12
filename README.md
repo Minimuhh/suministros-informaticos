@@ -40,9 +40,41 @@ de consultas.
 
 ## Instalación
 
-
 ```
 pip install -r requirements.txt
 ```
+### Instalacion en Docker
+
+- Construyendo la imagen: 
+```
+docker build -t <nombre-imagen>:<tag> .
+ejemplo:
+docker build -t suministros:latest .
+```
+<nombre-imagen> : nombre que le vamos a poner a la imagen(cualquiera :) )
+<tag>: una etiqueta cualquiera que nos va a ayudar a identificar un especifico build (cualquiera tambien)
+
+- Corriendo la imagen en un contenedor:
+
+```
+docker run -d -p <port-exposed>:<port-internal> <nombre-imagen>:<tag>
+ejemplo:
+docker run -d -p 8000:5000 suministros:latest
+```
+-d es "detach mode" que corre el contenedor sin necesidad de ver los cambios en la terminal
+-p es el puerto en el cual queremos correr el contenedor
+
+- Deteniendo el contenedor
+
+```
+docker stop <hash-code-container>
+docker stop 893ff1fe1825
+```
+
+** Repite la operacion cada vez que hayas hecho un cambio en el proyecto
+	- build image
+	- run image 
+	- stop image 
+
 
 ## Conclusiones y evolutivos del proyecto (cosas a mejorar)
