@@ -123,6 +123,35 @@ def logout():
     return redirect(url_for('login'))
 
 
+@app.route("/form-product", methods=["GET", "POST"])
+@token_required
+def form_product(user):
+    if(request.method == 'GET'):
+        return render_template('form_productos.html')
+    elif(request.method == 'POST'):    
+        nombre = request.form.get('nombreProducto')
+        description = request.form.get('descriptionProducto')
+        precio = request.form.get('precioProducto')
+        referencia = request.form.get('referenciaProducto')
+        color = request.form.get('colorProducto')
+        fecha_ingreso = request.form.get('fechaIngreso')
+        fecha_entrega = request.form.get('fechaEntrega')
+        producto = Producto(
+            nombre=nombre,
+            description=description,
+            precio=precio,
+            referencia=referencia,
+            color=color,
+            fecha_ingreso=fecha_ingreso,
+            fecha_entrega=fecha_entrega
+        )
+        connection.session.add(producto)
+        connection.session.commit()
+
+        return redirect(url_for('dashboard'))
+        
+
+
 if __name__ == '__main__':
     connection.Base.metadata.create_all(connection.engine)
     app.run(debug=True)
