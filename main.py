@@ -122,8 +122,14 @@ def logout():
     session.pop('jwt_token')
     return redirect(url_for('login'))
 
+@app.route("/product-form", methods=["GET", "POST"])
+def product_form():
+    if(request.method == "GET"):
+        return render_template("product_form.html")
+    elif(request.method == "POST"):
+        return "Method Post"
 
 if __name__ == '__main__':
-    connection.Base.metadata.create_all(connection.engine)
+    # connection.Base.metadata.create_all(connection.engine)
     app.run(debug=True)
 
