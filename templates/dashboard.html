@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %} DashBoard {% endblock %}
+{% block content %}
+<header>
+    <h1>Suministros Informáticos Dashboard</h1>
+</header>
+<div class="container">
+    <div class="welcome-message">
+        ¡Hola, {{context.user.nombre}} estás logueado!
+    </div>
+    <div style="text-align: center;">
+        <img src="{{ url_for('static', filename='logo.jpg')}}" alt="Suministros informaticos kev" width="120">
+    </div>
+    <div>
+        <h2>Productos Disponibles</h2>
+        <ul>
+            {% for producto in context.productos %}
+                <li>{{producto.nombre}}</li>
+                
+            {% endfor %}
+        </ul>
+    </div>
+    <div style="text-align: center;">
+        <button class="logout-button" onclick="logout()">Logout</button>
+    </div>
+    <div style="text-align: center;">
+        <a href="/form-product">Agrega un producto</a>
+    </div>
+</div>
+<script>
+    function logout() {
+        // Cambia la URL de redirección si es necesario
+        window.location.pathname = '/logout';
+    }
+</script>
+{% endblock %}

@@ -1,66 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+    <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+
+    <title>{% block title %} {% endblock title %}</title>
+
     <style>
-        body {
-            font-family: Arial;
-            background-color: #f2f2f2;
-            margin: 0;
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        h1 {
-            font-size: 28px;
-            color: #333;
-            margin-bottom: 10px;
-        }
-
-        p {
-            font-size: 16px;
-            color: #666;
-        }
-
-        a {
-            text-decoration: none;
-            color: #0099ff;
-            margin-right: 10px;
-        }
-
-        a:hover {
-            color: #0077cc;
-        }
+      
     </style>
-    <title>Document</title>
+
 </head>
 <body>
-    <div>
-        <h1>Suministros Informaticos</h1>
-        <p>Bienvenido(a) a nuestra página web de suministros informáticos, tu destino en línea para encontrar todo lo que necesitas en el mundo de la tecnología. Aquí encontrarás una amplia gama de productos y accesorios informáticos de última generación, diseñados para satisfacer tus necesidades tanto en el ámbito personal como profesional.
-            Desde componentes de hardware, como procesadores, tarjetas gráficas y discos duros, hasta periféricos esenciales, como teclados, ratones y monitores, nuestra tienda en línea ofrece una extensa selección de productos de alta calidad de los principales fabricantes del mercado. Además, también contamos con una variedad de software y programas que te ayudarán a maximizar el rendimiento y la eficiencia de tus dispositivos.            
-            Nos enorgullece ofrecer no solo productos de calidad, sino también un excelente servicio al cliente. Nuestro equipo de expertos en tecnología está disponible para brindarte asesoramiento y orientación, ayudándote a tomar decisiones informadas y encontrar los productos más adecuados para tus necesidades específicas.            
-            Navega por nuestro catálogo en línea, realiza compras seguras y rápidas, y disfruta de la comodidad de recibir tus suministros informáticos directamente en tu puerta. Ya seas un entusiasta de la informática, un profesional de TI o simplemente alguien en busca de los últimos gadgets y dispositivos electrónicos, ¡estamos aquí para servirte!            
-            No importa si necesitas actualizar tu computadora, mejorar tu sistema de redes o equipar tu oficina con las últimas tecnologías, nuestra página web de suministros informáticos es tu solución integral. Descubre una experiencia de compra en línea sin complicaciones y aprovecha nuestras ofertas especiales y promociones exclusivas.
-            Confía en nosotros para satisfacer todas tus necesidades informáticas. ¡Explora nuestra página web hoy mismo y lleva tu experiencia tecnológica al siguiente nivel!</p>
-        <div>
-            <p>login</p>
-            
-            <a href="/login">Login</a>
-            <a href="/registrar">Registrar</a>
-        </div>
-    </div>
+    {% block content %}
+    {% endblock content %}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -1,10 +1,40 @@
-from sqlalchemy import Column, Integer, String, Boolean
+from sqlalchemy import Column, Integer, String, Boolean, Date
 import connection
 
+class Producto(connection.Base): 
+    __tablename__ = "producto"
+    id = Column(Integer, primary_key=True)
+    nombre = Column(String(length=40), nullable=False)
+    description = Column(String(length=400), nullable=False)
+    precio = Column(Integer, nullable=False)
+    referencia = Column(String(length=50), nullable=True)
+    color = Column(String(length=50), nullable=False)
+    fecha_ingreso = Column(Date, default=False)
+    fecha_entrega = Column(Date, default=False)
 
+    def __init__(self, 
+                 nombre, 
+                 description, 
+                 precio,
+                 referencia, 
+                 color, 
+                 fecha_ingreso,
+                 fecha_entrega
+                 ): 
 
-# class Producto(connection.Base): 
-#     __tablename__ = "producto"
+        self.nombre = nombre
+        self.description = description
+        self.precio = precio
+        self.referencia = referencia
+        self.color = color
+        self.fecha_entrega = fecha_entrega
+        self.fecha_ingreso = fecha_ingreso
+
+    def __repr__(self):
+        return f"Producto {self.id}: {self.nombre}"
+    
+    def __str__(self):
+        return f"Producto {self.id}: {self.nombre}"
 
 
 class Usuario(connection.Base): 
