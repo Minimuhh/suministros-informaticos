@@ -8,6 +8,7 @@ from flask import (
     url_for,
     session
 )
+from datetime import datetime
 
 import jwt # https://pyjwt.readthedocs.io/en/stable/
 from functools import wraps
@@ -142,8 +143,8 @@ def form_product():
             precio=precio,
             referencia=referencia,
             color=color,
-            fecha_ingreso=fecha_ingreso,
-            fecha_entrega=fecha_entrega
+            fecha_ingreso=datetime.strptime(fecha_ingreso, "%Y-%m-%d"),
+            fecha_entrega=datetime.strptime(fecha_entrega, "%Y-%m-%d")
         )
         connection.session.add(producto)
         connection.session.commit()
