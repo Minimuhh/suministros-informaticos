@@ -13,11 +13,28 @@
     </div>
     <div>
         <h2>Productos Disponibles</h2>
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Color</th>
+              </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                {%for producto in context.productos%}
+              <tr>
+                <th scope="row">1</th>
+                <td>{{producto.nombre}}</td>
+                <td>${{producto.precio}}</td>
+                <td>{{producto.color}}</td>
+                <td><a href="/del-product/{{producto.id}}">x</a></td>
+              </tr>
+                {%endfor%}
+            </tbody>
+          </table>
         <ul>
-            {% for producto in context.productos %}
-                <li>{{producto.nombre}} {{producto.precio}}</li>
-                <p>{{producto.color}}</p>
-            {% endfor %}
         </ul>
     </div>
     <div style="text-align: center;">

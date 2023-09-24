@@ -1,4 +1,11 @@
-from sqlalchemy import Column, Integer, String, Boolean, Date
+from sqlalchemy import (
+    Column,
+    Integer,
+    String,
+    Boolean,
+    Date, 
+    ForeignKey
+)
 import connection
 
 class Producto(connection.Base): 
@@ -73,5 +80,63 @@ class Usuario(connection.Base):
         return f"Usuario {self.id}: {self.nombre} {self.apellido}"
 
 
-# class Proveedor(connection.Base): 
-#     pass
+class Proveedor(connection.Base): 
+    __tablename__ = "proveedor"
+
+    id = Column(Integer, primary_key=True)
+    comp_name = Column(String(length=40), nullable=False)
+    email = Column(String(length=40), nullable=False)
+    telefono = Column(String(length=10), nullable=False)
+    direccion = Column(String(length=200), nullable=True)
+    
+    def __init__(self, 
+                 comp_name, 
+                 email,
+                 telefono, 
+                 direccion): 
+
+        self.comp_name = comp_name
+        self.email = email
+        self.telefono = telefono 
+        self.direccion = direccion
+
+    
+    def __repr__(self):
+        return f"Empresa {self.id}: {self.comp_name} "
+    
+    def __str__(self):
+        return f"Empresa {self.id}: {self.comp_name} "
+
+
+class Pedido(connection.Base):
+    __tablename__ = "pedidos"
+
+    id = Column(Integer, primary_key=True)
+    product = Column(ForeignKey("producto.id"))
+    user = Column(ForeignKey("usuario.id"))
+    peso = Columnt(String(length=6), nullable=False)
+    quantity = Column(String(length=4), nullable=False)
+    fecha_pedido = Column(String(length= 60), nullable=False)
+    fecha_entrega = Column(String(length= 60), nullable=False)
+
+    def __init__(self,
+                product,
+                user,
+                peso,
+                quantity,
+                fecha_pedido,
+                fecha_entrega)
+
+        self.product = product
+        self.user = user
+        self.peso = peso
+        self.quantity = quantity
+        self.fecha_pedido = fecha_pedido
+        self.fecha_entrega = fecha_entrega
+    
+
+    def __repr__(self):
+        return f"Pedido {self.id}: {self.product}, llegará el {self.fecha_entrega} "
+    
+    def __str__(self):
+        return f"Pedido {self.id}: {self.product}, llegará el {self.fecha_entrega} "

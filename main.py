@@ -150,10 +150,13 @@ def form_product():
         connection.session.commit()
 
         return redirect(url_for('dashboard'))
-        
 
+@app.route("/del-product/<id>")        
+def del_product(id):
+    product = connection.session.query(Producto).filter_by(id=int(id)).delete()
+    connection.session.commit()
+    return redirect(url_for('dashboard'))
 
 if __name__ == '__main__':
     connection.Base.metadata.create_all(connection.engine)
     app.run(debug=True)
-
