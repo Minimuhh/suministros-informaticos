@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %} Proveedores {% endblock %}
+{% block content %}
+
+<header>
+    <h1>Suministros Informáticos Proveedores</h1>
+</header>
+<div class="container">
+    <div class="welcome-message">
+        ¡Hola, {{context.user.nombre}}!
+    </div>
+    <div style="text-align: center;">
+        <img src="{{ url_for('static', filename='logo.jpg')}}" alt="Suministros informaticos kev" width="120">
+    </div>
+    <div>
+        <h2>Lista de Proveedores</h2>
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Compañia</th>
+                <th scope="col">Email</th>
+                <th scope="col">Numero</th>
+                <th scope="col">Direccion</th>
+              </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                {%for proveedor in context.proveedores%}
+              <tr>
+                <th scope="row">1</th>
+                <td>{{proveedor.comp_name}}</td>
+                <td>${{proveedor.email}}</td>
+                <td>{{proveedor.telefono}}</td>
+                <td>{{proveedor.direccion}}</td>
+                <td><a href="/del-providers/{{proveedor.id}}">x</a></td>
+              </tr>
+                {%endfor%}
+            </tbody>
+          </table>
+        <ul>
+        </ul>
+    </div>
+    <div style="text-align: center;">
+        <button class="logout-button" onclick="logout()">Logout</button>
+    </div>
+    <div style="text-align: center;">
+        <a href="/add-providers">Agrega un proveedor</a>
+    </div>
+</div>
+<script>
+    function logout() {
+        // Cambia la URL de redirección si es necesario
+        window.location.pathname = '/logout';
+    }
+</script>
+
+{% endblock %}

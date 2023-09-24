@@ -114,7 +114,7 @@ class Pedido(connection.Base):
     id = Column(Integer, primary_key=True)
     product = Column(ForeignKey("producto.id"))
     user = Column(ForeignKey("usuario.id"))
-    peso = Columnt(String(length=6), nullable=False)
+    peso = Column(String(length=6), nullable=False)
     quantity = Column(String(length=4), nullable=False)
     fecha_pedido = Column(String(length= 60), nullable=False)
     fecha_entrega = Column(String(length= 60), nullable=False)
@@ -125,7 +125,7 @@ class Pedido(connection.Base):
                 peso,
                 quantity,
                 fecha_pedido,
-                fecha_entrega)
+                fecha_entrega):
 
         self.product = product
         self.user = user

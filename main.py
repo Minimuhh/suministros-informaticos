@@ -17,7 +17,8 @@ from datetime import datetime, timedelta
 import connection
 from models import (
     Usuario,
-    Producto
+    Producto,
+    Proveedor
 )
 
 app = Flask(__name__)
@@ -156,6 +157,35 @@ def del_product(id):
     product = connection.session.query(Producto).filter_by(id=int(id)).delete()
     connection.session.commit()
     return redirect(url_for('dashboard'))
+
+
+
+########################################################
+@app.route("/list-providers", methods=['GET'])
+@token_required
+def list_providers(user):
+    if(request.method == "GET"):
+        proveedores = connection.session.query(Proveedor).all()
+        context = {
+            "user": user, 
+            "proveedores": proveedores
+        }
+        return render_template("proveedores.html", context=context)
+
+@app.route("/add-providers", methods=["POST","GET"])
+@token_required
+def add_providers(id):
+    return render_template("form_proveedores.html")
+
+
+@app.route("/del-providers", methods=["POST"])
+def del_providers(id):
+    pass
+
+@app.route("/update-providers", methods=["POST, PUT"])
+def update_providers(id):
+    pass
+
 
 if __name__ == '__main__':
     connection.Base.metadata.create_all(connection.engine)
