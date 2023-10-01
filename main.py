@@ -18,7 +18,8 @@ import connection
 from models import (
     Usuario,
     Producto,
-    Proveedor
+    Proveedor,
+    Pedido
 )
 
 app = Flask(__name__)
@@ -161,6 +162,7 @@ def del_product(id):
 
 
 ########################################################
+
 @app.route("/list-providers", methods=['GET'])
 @token_required
 def list_providers(user):
@@ -182,9 +184,44 @@ def add_providers(id):
 def del_providers(id):
     pass
 
-@app.route("/update-providers", methods=["POST, PUT"])
+@app.route("/update-providers", methods=["GET, PUT"])
 def update_providers(id):
     pass
+
+#########################################################
+
+@app.route("/list-pedidos", methods=['GET'])
+@token_required
+def list_pedidos(user):
+    if(request.method == "GET"):
+        pedidos = connection.session.query(Pedido).all()
+        context = {
+            "user": user, 
+            "pedidos": pedidos
+        }
+        return render_template("pedidos.html", context=context)
+
+@app.route("/add-pedido", methods=["POST","GET"])
+@token_required
+def add_pedido(id):
+    if(request.method == 'GET'):
+        usuarios = connection.session.query(Usuario).all()
+        productos = connection.session.query(Producto).all()
+        context = {
+            "users": usuarios,
+            "productos": productos
+        }
+        return render_template("form_pedido.html", context = context)
+
+
+@app.route("/del-pedido", methods=["POST"])
+def del_pedido(id):
+    pass
+
+@app.route("/update-pedido", methods=["GET, PUT"])
+def update_pedido(id):
+    pass
+
 
 
 if __name__ == '__main__':

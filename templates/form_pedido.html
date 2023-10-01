@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %} Agregar un pedido {% endblock %}
+
+{% block content %}
+<div class="container">
+
+    <h1 class="mt-3">Formulario Pedido</h1>
+    <form method="post" action="/add-pedido">
+        <div class="mb-3">
+            <label for="" class="form-label">Producto</label>
+            <select class="form-select" aria-label="Default select example">
+                <option selected disabled>Open this select menu</option>
+                {%for producto in context.productos%}
+                <option value="{{producto.nombre}}">{{producto.nombre}}</option>
+                {%endfor%}
+              </select>
+        </div>
+        <div class="mb-3">
+            <label for="" class="form-label">Usuario</label>
+            <select class="form-select" aria-label="Default select example">
+                <option selected disabled>Open this select menu</option>
+                {%for user in context.users%}
+                <option value="{{user.nombre}}">{{user.nombre}}</option>
+                {%endfor%}
+              </select>
+        </div>
+        <div class="mb-3">
+            <label for="precioPedido" class="form-label">Peso:</label>
+            <input type="number" class="form-control" id="precioPedido" placeholder="peso Pedido" name="precioPedido" required>
+            <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+        </div>
+        <div class="mb-3">
+            <label for="referenciaPedido" class="form-label">Cantidad</label>
+            <input type="text" class="form-control" id="referenciaPedido" placeholder="referencia" name="referenciaPedido" required>
+            <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+        </div>
+        <div class="mb-3">
+            <label for="fechaIngreso" class="form-label">Fecha Ingreso:</label>
+            <input type="date" class="form-control" id="fechaIngreso" name="fechaIngreso" required>
+            <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+        </div>
+        <div class="mb-3">
+            <label for="fechaEntrega" class="form-label">Fecha Entrega:</label>
+            <input type="date" class="form-control" id="fechaEntrega" name="fechaEntrega">
+            <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+</div>
+{% endblock %}
