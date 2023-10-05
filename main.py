@@ -216,7 +216,20 @@ def add_pedido(id):
 
 @app.route("/del-pedido", methods=["POST"])
 def del_pedido(id):
-    pass
+    if(request.method == 'POST'):
+        usuarios = connection.session.query(Usuario).all()
+        productos = connection.session.query(Producto).all()
+        if productos
+            connection.session.delete(product)
+            connection.session.commit()
+            flash("Producto eliminado con éxito", "success")
+        else:
+            flash("El producto no se encontró", "error")
+        context = {
+            "users": usuarios,
+            "productos": productos
+        }
+        return render_template("form_pedido.html", context = context)
 
 @app.route("/update-pedido", methods=["GET, PUT"])
 def update_pedido(id):
