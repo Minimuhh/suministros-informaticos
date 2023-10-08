@@ -103,4 +103,15 @@ docker stop 893ff1fe1825
 
 ## Conclusiones y evolutivos del proyecto (cosas a mejorar)
 
+- Hemos sido capaces de implementar un sistema de login
+- Se ha implementado satisfactoriamente una coneccion con la base data.
+- Se han creado vistas para la interaccion con la base de datos(Crear cuenta, crear pedido, crear producto, eliminar productio, etc)
+- Se podido crear un template base para los archivos html y css del proyecto.
+- Hemos sido capaces de poder usar de manera efectiva los "jinja templates" tambien variables del template 
 
+
+### Evolutivos del proyecto(cosas a mejorar )
+
+- Implementar un sistema de validaciones para la creacion de usuario
+- Implementar un sistema de validaciones para el login, y los demas formularios de las vistas.
+- Agregar mas estilos a las vistas y mejorar la experiencia de usuario.
