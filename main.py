@@ -219,7 +219,7 @@ def del_pedido(id):
     if(request.method == 'POST'):
         usuarios = connection.session.query(Usuario).all()
         productos = connection.session.query(Producto).all()
-        if productos
+        if productos:
             connection.session.delete(product)
             connection.session.commit()
             flash("Producto eliminado con éxito", "success")

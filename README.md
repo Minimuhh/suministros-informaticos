@@ -40,6 +40,15 @@ de consultas.
 
 ## Instalación
 
+### Instalacion del entorno virtual
+
+```
+python3.exe -m venv [nombre_entorno]
+
+```
+
+### agregar todas las librerias del requirements.txt a nuestro entorno virtual
+
 ```
 pip install -r requirements.txt
 ```
@@ -76,5 +85,11 @@ docker stop 893ff1fe1825
 	- run image 
 	- stop image 
 
+## Esquema de la base de datos
+
+
+
 
 ## Conclusiones y evolutivos del proyecto (cosas a mejorar)
+
+
