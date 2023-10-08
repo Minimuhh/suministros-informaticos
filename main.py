@@ -180,7 +180,7 @@ def add_providers(id):
     return render_template("form_proveedores.html")
 
 
-@app.route("/del-providers", methods=["POST"])
+@app.route("/del-providers/<id>", methods=["POST"])
 def del_providers(id):
     pass
 
@@ -214,7 +214,7 @@ def add_pedido(id):
         return render_template("form_pedido.html", context = context)
 
 
-@app.route("/del-pedido", methods=["POST"])
+@app.route("/del-pedido/<id>", methods=["POST"])
 def del_pedido(id):
     if(request.method == 'POST'):
         usuarios = connection.session.query(Usuario).all()
