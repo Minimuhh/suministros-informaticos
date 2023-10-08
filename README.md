@@ -89,7 +89,16 @@ docker stop 893ff1fe1825
 
 ## Screenshots de la aplicacion
 
-<img src="./media/main_page.png">
+### Description
+
+<div>
+	<p>La pagina principal en la que podemos encontrar el login y la registracion</p>
+	<div>
+		<img src="./media/main_page.png">
+		<small>Image de pagina principal</small>
+	</div>
+</div>
+
 
 
 ## Conclusiones y evolutivos del proyecto (cosas a mejorar)
