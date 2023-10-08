@@ -87,7 +87,9 @@ docker stop 893ff1fe1825
 
 ## Esquema de la base de datos
 
+## Screenshots de la aplicacion
 
+<img src="./media/main_page.png">
 
 
 ## Conclusiones y evolutivos del proyecto (cosas a mejorar)
