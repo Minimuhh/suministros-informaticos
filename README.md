@@ -99,6 +99,20 @@ docker stop 893ff1fe1825
 	</div>
 </div>
 
+<div>
+	<p>La pagina principal en la que podemos encontrar el login y la registracion</p>
+	<div>
+		<img src="./media/add_pedido.png">
+		<small>Image de pagina principal</small>
+	</div>
+</div>
+<div>
+	<p>La pagina principal en la que podemos encontrar el login y la registracion</p>
+	<div>
+		<img src="./media/add_product.png">
+		<small>Image de pagina principal</small>
+	</div>
+</div>
 
 
 ## Conclusiones y evolutivos del proyecto (cosas a mejorar)
