@@ -127,10 +127,11 @@ def logout():
 
 
 @app.route("/form-product", methods=["GET", "POST"])
-# @token_required
-def form_product():
+@token_required
+def form_product(user):
     if(request.method == 'GET'):
-        return render_template('form_productos.html')
+        context = {'user': user}
+        return render_template('form_productos.html', context=context)
     elif(request.method == 'POST'):    
         nombre = request.form.get('nombreProducto')
         description = request.form.get('descriptionProducto')
@@ -176,8 +177,9 @@ def list_providers(user):
 
 @app.route("/add-providers", methods=["POST","GET"])
 @token_required
-def add_providers(id):
-    return render_template("form_proveedores.html")
+def add_providers(user):
+    context = {'user': user}
+    return render_template("form_proveedores.html", context=context)
 
 
 @app.route("/del-providers/<id>", methods=["POST"])
@@ -203,16 +205,29 @@ def list_pedidos(user):
 
 @app.route("/add-pedido", methods=["POST","GET"])
 @token_required
-def add_pedido(id):
+def add_pedido(user):
     if(request.method == 'GET'):
         usuarios = connection.session.query(Usuario).all()
         productos = connection.session.query(Producto).all()
         context = {
+            "user": user,
             "users": usuarios,
             "productos": productos
         }
         return render_template("form_pedido.html", context = context)
-
+    else:
+        pedido = Pedido(
+        product=request.form.get('selectProduct'),
+        user=request.form.get('selectUser'),
+        peso=request.form.get('precioPedido'),
+        quantity=request.form.get('referenciaPedido'),
+        fecha_pedido=request.form.get('fechaIngreso'),
+        fecha_entrega=request.form.get('fechaEntrega'),
+        )
+        connection.session.add(pedido)
+        connection.session.commit()
+        return redirect(url_for('list_pedidos'))
+        
 
 @app.route("/del-pedido/<id>", methods=["POST"])
 def del_pedido(id):

@@ -1,14 +1,11 @@
 {% extends "base.html" %}
 {% block title %} Proveedores {% endblock %}
 {% block content %}
-
+{% include 'navbar.html' %}
 <header>
-    <h1>Suministros Informáticos Proveedores</h1>
+    <h1>Suministros Informáticos - Proveedores</h1>
 </header>
 <div class="container">
-    <div class="welcome-message">
-        ¡Hola, {{context.user.nombre}}!
-    </div>
     <div style="text-align: center;">
         <img src="{{ url_for('static', filename='logo.jpg')}}" alt="Suministros informaticos kev" width="120">
     </div>
