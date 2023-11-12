@@ -100,19 +100,52 @@ docker stop 893ff1fe1825
 </div>
 
 <div>
-	<p>La pagina principal en la que podemos encontrar el login y la registracion</p>
-	<div>
-		<img src="./media/add_pedido.png">
-		<small>Image de pagina principal</small>
-	</div>
-</div>
-<div>
-	<p>La pagina principal en la que podemos encontrar el login y la registracion</p>
+	<p>La pagina en la que podemos añadir un producto para que salga en la lista de productos</p>
 	<div>
 		<img src="./media/add_product.png">
 		<small>Image de pagina principal</small>
 	</div>
 </div>
+<div>
+	<p>La pagina donde muestra los pedidos realizador</p>
+	<div>
+		<img src="./media/list_pedidos.png">
+		<small>Image de pagina principal</small>
+	</div>
+</div>
+
+<div>
+	<p>La pagina que muestra los proveedores que tenemos; nombre, direccion...</p>
+	<div>
+		<img src="./media/list_providers.png">
+		<small>Image de pagina principal</small>
+	</div>
+</div>
+
+<div>
+	<p>La pagina en la que podemos iniciar sesion o registrarnos</p>
+	<div>
+		<img src="./media/login.png">
+		<small>Image de pagina principal</small>
+	</div>
+</div>
+
+<div>
+	<p>La pagina donde muestra los productos que tenemos actualmente su precio, cantidad...</p>
+	<div>
+		<img src="./media/list_product.png">
+		<small>Image de pagina principal</small>
+	</div>
+</div>
+
+<div>
+	<p>La pagina en donde podemos añadir un pedido que esta por realizar y añadir la informacion del cliente; nombre, direccion...</p>
+	<div>
+		<img src="./media/add_pedido.png">
+		<small>Image de pagina principal</small>
+	</div>
+</div>
+
 
 
 ## Conclusiones y evolutivos del proyecto (cosas a mejorar)
